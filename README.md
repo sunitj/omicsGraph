@@ -17,11 +17,13 @@ Thank You!
 	* requests
 	* py2neo version 2.0.2
 * Neo4j version 2.1.6
-* OS: ![image](https://www.dropbox.com/s/xi9qa94974qkllz/about_this_mac.png)
+* OS:
+
+	![Imgur](http://i.imgur.com/3QIWC7e.png)
 
 ## Create your own Neo4j graph of Twitter data:
 
-1. Obtain a `consumer_key` and a `consumer_secret` by [registering](https://dev.twitter.com/apps) an application.
+1. Obtain a `consumer_key` and a `consumer_secret` by [registering](https://dev.twitter.com/apps) an application on twitter.
 2. Get a [bearer token](https://dev.twitter.com/docs/auth/application-only-auth):
 
 ```
