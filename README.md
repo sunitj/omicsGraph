@@ -19,16 +19,21 @@ Thank You!
 * Neo4j version 2.1.6
 * OS:
 
-	![Imgur](http://i.imgur.com/3QIWC7e.png)
+	![About my Mac](images/about_this_mac.png)
 
 ## Create your own Neo4j graph of Twitter data:
 
 1. Obtain a `consumer_key` and a `consumer_secret` by [registering](https://dev.twitter.com/apps) an application on twitter.
-2. Get a [bearer token](https://dev.twitter.com/docs/auth/application-only-auth):
+2. Get a [bearer token](https://dev.twitter.com/docs/auth/application-only-auth), type the following in your terminal:
 
 ```
 curl -XPOST -u consumer_id:consumer_secret 'https://api.twitter.com/oauth2/token?grant_type=client_credentials'
-export TWITTER_BEARER=the twitter bearer returned from the previous line
+```
+
+3. Copy **just** the token from the output of the previous command and execute the following command
+
+```
+export TWITTER_BEARER="the twitter bearer returned from the previous line"
 ```
 
 Start neo4j, taking note of which port you're running it on. If you're running at http://localhost:7474/db/data/, you can start populating the database with:
