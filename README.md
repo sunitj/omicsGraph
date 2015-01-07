@@ -23,30 +23,31 @@ Thank You!
 
 ## Create your own Neo4j graph of Twitter data:
 
-1. Obtain a `consumer_key` and a `consumer_secret` by [registering](https://dev.twitter.com/apps) an application on twitter.
-2. Get a [bearer token](https://dev.twitter.com/docs/auth/application-only-auth), type the following in your terminal:
+* Obtain a `consumer_key` and a `consumer_secret` by [registering](https://dev.twitter.com/apps) an application on twitter.
+* Get a [bearer token](https://dev.twitter.com/docs/auth/application-only-auth), type the following in your terminal:
 
 ```
 curl -XPOST -u consumer_id:consumer_secret 'https://api.twitter.com/oauth2/token?grant_type=client_credentials'
 ```
 
-3. Copy **just** the token from the output of the previous command and execute the following command
+* Copy **just** the token from the output of the previous command and execute the following command
 
 ```
 export TWITTER_BEARER="the twitter bearer returned from the previous line"
 ```
 
-Start neo4j, taking note of which port you're running it on. If you're running at http://localhost:7474/db/data/, you can start populating the database with:
+Start neo4j, taking note of which port you're running it on. If you're running at http://localhost:7474/db/data/, you can start populating the database with. In the following example, i'm using the port 2794.
 
 ```
-python collect_keyword.py 7474 omics
+python collect_keyword.py 2794 omics
 ```
 
-The first argument, 7474, is which port you're running neo4j on and the second argument, omics, is the keyword by which you want to search for tweets. You may run this command with a different keyword as many times as you wish. I used:
+The first argument, 2794, is which port you're running neo4j on and the second argument, omics, is the keyword by which you want to search for tweets. You may run this command with a different keyword as many times as you wish. I used:
 
 ```
-python collect_keyword.py 7474 metagenomics
-python collect_keyword.py 7474 rnaseq
+python collect_keyword.py 2794 metagenomics
+python collect_keyword.py 2794 rnaseq
+python collect_keyword.py 2794 bioinformatics
 ```
 
 ---
