@@ -41,7 +41,7 @@ Start neo4j, taking note of which port you're running it on. If you're running a
 ```
 python collect_keyword.py 7474 omics
 ```
-The first argument, 2794, is which port you're running neo4j on and the second argument, omics, is the keyword by which you want to search for tweets. You may run this command with a different keyword as many times as you wish. In my case, I used the port 2794, so the commands I used were:
+The first argument, 7474, is which port you're running neo4j on and the second argument, omics, is the keyword by which you want to search for tweets. You may run this command with a different keyword as many times as you wish. In my case, I used the port 2794, so the commands I used were:
 
 ```
 python collect_keyword.py 2794 omics
