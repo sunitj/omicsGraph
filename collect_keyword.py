@@ -9,11 +9,11 @@ import sys
 url = "http://localhost:{port}/db/data/".format(port=sys.argv[1])
 graph = Graph(url)
 
-graph.cypher.execute("CREATE CONSTRAINT ON (t:Tweet) ASSERT t.id IS UNIQUE;")
-graph.cypher.execute("CREATE CONSTRAINT ON (u:User) ASSERT u.screen_name IS UNIQUE;")
-graph.cypher.execute("CREATE CONSTRAINT ON (h:Hashtag) ASSERT h.name IS UNIQUE;")
-graph.cypher.execute("CREATE CONSTRAINT ON (l:Link) ASSERT l.url IS UNIQUE;")
-graph.cypher.execute("CREATE CONSTRAINT ON (s:Source) ASSERT s.name IS UNIQUE;")
+graph.cypher.run("CREATE CONSTRAINT ON (t:Tweet) ASSERT t.id IS UNIQUE;")
+graph.cypher.run("CREATE CONSTRAINT ON (u:User) ASSERT u.screen_name IS UNIQUE;")
+graph.cypher.run("CREATE CONSTRAINT ON (h:Hashtag) ASSERT h.name IS UNIQUE;")
+graph.cypher.run("CREATE CONSTRAINT ON (l:Link) ASSERT l.url IS UNIQUE;")
+graph.cypher.run("CREATE CONSTRAINT ON (s:Source) ASSERT s.name IS UNIQUE;")
 
 # Get Twitter bearer to pass to header.
 TWITTER_BEARER = os.environ["TWITTER_BEARER"]
@@ -26,7 +26,8 @@ lang = "en"
 since_id = -1
 base_url = "https://api.twitter.com/1.1/search/tweets.json?"
 
-while True:
+tries=0
+while tries < 2880:
     try:
         # Build URL.
         url = base_url + "q={q}&count={count}&result_type={result_type}&lang={lang}&since_id={since_id}".format(q=q,count=count,result_type=result_type,lang=lang,since_id=since_id)
@@ -112,4 +113,5 @@ while True:
     except Exception as e:
         print(e)
         time.sleep(60)
+        tries += 1
         continue
