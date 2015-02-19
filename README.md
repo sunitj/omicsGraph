@@ -41,7 +41,7 @@ Launch `neo4j`, taking note of which `port` you're running it on.
 The script `collect_keyword.py` will collect the tweets related to your `hashtags` and simultaneously populate the neo4j database running in the background. By default, the script will run for 2000 successful attempts of data retrieval, where `success` is defined as any number of tweets received. This is how you can use the script:
 
 ```
-python collect_keyword.py port hashtag [OPTIONAL: success]
+python collect_keyword.py port hashtag [success]
 ```
 
 **NOTE:** **Do not** use the symbol `#` when asking for a `hashtag` in the command above.
