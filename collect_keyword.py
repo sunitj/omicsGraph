@@ -8,7 +8,7 @@ import sys
 # run Script For x successful attempts; default = 2000
 successLimit=0
 if(sys.argv[3]):
-    successLimit=sys.argv[3]
+    successLimit = int(sys.argv[3])
 else:
     successLimit=2000
 
@@ -118,10 +118,11 @@ while True:
         # Send Cypher query to db.
         graph.cypher.run(query,tweets=tweets)
         print("Tweets added to graph!\n")
-        time.sleep(60)
         
         if(success==successLimit):
             break
+        else:
+            time.sleep(60)
 
     except Exception as e:
         print(e)
