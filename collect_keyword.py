@@ -5,6 +5,13 @@ import time
 from py2neo import Graph
 import sys
 
+# run Script For x successful attempts; default = 2000
+successLimit=0
+if(sys.argv[3]):
+    successLimit=sys.argv[3]
+else:
+    successLimit=2000
+
 # Connect to graph and add constraints.
 url = "http://localhost:{port}/db/data/".format(port=sys.argv[1])
 graph = Graph(url)
@@ -26,8 +33,8 @@ lang = "en"
 since_id = -1
 base_url = "https://api.twitter.com/1.1/search/tweets.json?"
 
-tries=0
-while tries < 2880:
+success=0
+while True:
     try:
         # Build URL.
         url = base_url + "q={q}&count={count}&result_type={result_type}&lang={lang}&since_id={since_id}".format(q=q,count=count,result_type=result_type,lang=lang,since_id=since_id)
@@ -38,11 +45,14 @@ while tries < 2880:
         tweets = r.json()["statuses"]
 
         if tweets:
+            now = time.strftime("%c")
+            success += 1
+            print "[ {} ] Successful attempt# {}".format(now,success)
             plural = "s." if len(tweets) > 1 else "."
             print("Found " + str(len(tweets)) + " tweet" + plural)
         else:
             print("No tweets found.\n")
-            time.sleep(65)
+            time.sleep(120)
             continue
 
         # Update since_id so we do not get tweets that were captured in the last API call.
@@ -109,9 +119,11 @@ while tries < 2880:
         graph.cypher.run(query,tweets=tweets)
         print("Tweets added to graph!\n")
         time.sleep(60)
+        
+        if(success==successLimit):
+            break
 
     except Exception as e:
         print(e)
-        time.sleep(60)
-        tries += 1
+        time.sleep(180)
         continue
