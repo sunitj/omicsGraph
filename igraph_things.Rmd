@@ -84,3 +84,9 @@ V(g)$color = colors[cluster]
 V(g)$size = 4
 plot(g)
 ```
+
+
+# Session Info
+```{r sessioninfo}
+sessionInfo()
+```
